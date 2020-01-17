@@ -1,5 +1,9 @@
 package com.evg
 
+import com.evg.entity.Article
+import com.evg.entity.User
+import com.evg.repository.ArticleRepository
+import com.evg.repository.UserRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
