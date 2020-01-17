@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.jpa") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
+    kotlin("plugin.allopen") version "1.3.61"
     id("org.springframework.boot") version "2.2.2.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
 }
@@ -44,4 +45,15 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
 }
