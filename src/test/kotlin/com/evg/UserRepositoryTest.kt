@@ -9,16 +9,24 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 
 @DataJpaTest
-class RepositoriesTests @Autowired constructor(
+class UserRepositoryTest @Autowired constructor(
     val entityManager: TestEntityManager,
-    val userRepository: UserRepository) {
+    val userRepository: UserRepository
+) {
 
     @Test
     fun `When findByLogin then return User`() {
         val juergen = User("springjuergen", "Juergen", "Hoeller")
         entityManager.persist(juergen)
         entityManager.flush()
-        val user = userRepository.findByLogin(juergen.login)
-        assertThat(user).isEqualTo(juergen)
+        val foundUser = userRepository.findByLogin(juergen.login)
+        assertThat(foundUser).isNotNull
+        assertThat(foundUser).isEqualTo(juergen)
+
+        foundUser?.let { userRepository.delete(it) }
+
+        val deletedUser = userRepository.findByLogin(juergen.login)
+
+        assertThat(deletedUser).isNull()
     }
 }
