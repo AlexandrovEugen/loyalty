@@ -10,10 +10,12 @@ plugins {
 }
 
 group = "com.evg"
-version = "1.0-SNAPSHOT"
+version = "0.1"
 
 repositories {
     mavenCentral()
+    jcenter()
+    google()
 }
 
 dependencies {
@@ -27,9 +29,13 @@ dependencies {
     implementation("io.springfox:springfox-swagger2:2.9.2")
     implementation("io.springfox:springfox-swagger-ui:2.9.2")
     implementation("io.github.microutils:kotlin-logging:1.7.6")
+    implementation("se.transmode.gradle:gradle-docker:1.2")
+
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
 }
 
 tasks {
