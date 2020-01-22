@@ -6,21 +6,21 @@ import com.evg.entity.User
 import com.evg.facade.UserFacade
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController("/user")
 class UserController(@Autowired val userFacade: UserFacade) {
 
 
+    @Log
     @PostMapping("/sign-up")
-    @Log
-    fun signUp(@RequestBody user: UserDto): ResponseEntity<User> = ResponseEntity.ok(userFacade.signUpUser(user))
+    fun createUser(@RequestBody user: UserDto): ResponseEntity<User> = ResponseEntity.ok(userFacade.signUpUser(user))
 
-    @GetMapping("all")
     @Log
+    @GetMapping("all")
     fun getUsers(): ResponseEntity<List<UserDto>> = ResponseEntity.ok(userFacade.getUsers())
 
+    @Log
+    @DeleteMapping("delete")
+    fun deleteUser(@RequestParam email: String) = ResponseEntity.ok(userFacade.deleteUser(email))
 }

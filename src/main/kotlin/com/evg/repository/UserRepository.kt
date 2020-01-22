@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository
 interface UserRepository : CrudRepository<User, Long> {
 
     @Log
-    fun findByLogin(login: String): User?
+    fun findByEmail(login: String): User?
 }

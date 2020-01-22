@@ -19,13 +19,13 @@ class UserRepositoryTest @Autowired constructor(
         val juergen = User("springjuergen", "Juergen", "Hoeller")
         entityManager.persist(juergen)
         entityManager.flush()
-        val foundUser = userRepository.findByLogin(juergen.login)
+        val foundUser = userRepository.findByEmail(juergen.email)
         assertThat(foundUser).isNotNull
         assertThat(foundUser).isEqualTo(juergen)
 
         foundUser?.let { userRepository.delete(it) }
 
-        val deletedUser = userRepository.findByLogin(juergen.login)
+        val deletedUser = userRepository.findByEmail(juergen.email)
 
         assertThat(deletedUser).isNull()
     }

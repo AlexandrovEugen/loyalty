@@ -2,7 +2,6 @@ package com.evg.facade
 
 import com.evg.aspect.Log
 import com.evg.dto.UserDto
-import com.evg.entity.User
 import com.evg.service.UserService
 import org.springframework.stereotype.Component
 
@@ -10,12 +9,12 @@ import org.springframework.stereotype.Component
 class UserFacade(private val userService: UserService) {
 
     @Log
-    fun signUpUser(userDto: UserDto): User {
-        return userService.createUser(userDto.toUser())
-    }
+    fun signUpUser(userDto: UserDto) = userService.createUser(userDto.toUser())
 
     @Log
-    fun getUsers(): List<UserDto> {
-        return userService.getUsers().map { it.toUserDto() }
-    }
+    fun getUsers(): List<UserDto> = userService.getUsers().map { it.toUserDto() }
+
+    @Log
+    fun deleteUser(email: String) = userService.deleteUser(email)
+
 }
