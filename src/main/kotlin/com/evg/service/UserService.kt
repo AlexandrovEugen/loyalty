@@ -19,6 +19,7 @@ class UserService(private val userRepository: UserRepository) {
         return userRepository.findAll().toList()
     }
 
+    @Log
     fun deleteUser(email: String): User {
         val user =
             userRepository.findByEmail(email) ?: throw EntityNotFoundException("There is no user with email: $email")

@@ -14,6 +14,7 @@ class UserFacade(private val userService: UserService) {
     @Log
     fun getUsers(): List<UserDto> = userService.getUsers().map { it.toUserDto() }
 
+    @Log
     fun deleteUser(email: String) = userService.deleteUser(email)
 
 }

@@ -8,9 +8,9 @@ data class UserDto(
     @Email val email: String,
     val firstName: String,
     val lastName: String,
-    val description: String? = null
+    val password: String? = null
 ) {
 
-    fun toUser() = User(this.email, this.firstName, this.lastName, this.description)
+    fun toUser() = User(this.email, this.firstName, this.lastName, this.password)
 
 }

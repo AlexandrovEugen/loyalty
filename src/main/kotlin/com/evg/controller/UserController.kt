@@ -17,9 +17,9 @@ class UserController(@Autowired val userFacade: UserFacade) {
     fun createUser(@RequestBody user: UserDto): ResponseEntity<User> = ResponseEntity.ok(userFacade.signUpUser(user))
 
     @Log
-    @GetMapping("all")
+    @GetMapping("/all")
     fun getUsers(): ResponseEntity<List<UserDto>> = ResponseEntity.ok(userFacade.getUsers())
 
-    @DeleteMapping("delete")
+    @DeleteMapping("/delete")
     fun deleteUser(@RequestParam email: String) = ResponseEntity.ok(userFacade.deleteUser(email))
 }

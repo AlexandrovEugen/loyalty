@@ -12,9 +12,8 @@ private val logger = KotlinLogging.logger { }
 @Component
 class LogAspect {
 
-    @Suppress("TooGenericExceptionCaught")
     @Around("@annotation(com.evg.aspect.Log)")
-    fun logExecutionTime(joinPoint: ProceedingJoinPoint): Any {
+    fun logExecutionTime(joinPoint: ProceedingJoinPoint) {
         val start = System.currentTimeMillis()
         val signature = joinPoint.signature.toShortString()
         val result = try {
@@ -29,7 +28,6 @@ class LogAspect {
         }
         val duration = System.currentTimeMillis() - start
         logger.info("end -> Finished executing: $signature, returned: '$result', duration: $duration ms")
-        return result
     }
 
     private fun StringBuilder.appendParameters(args: Array<Any>) {
